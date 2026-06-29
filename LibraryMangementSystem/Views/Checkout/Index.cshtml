@@ -1,0 +1,50 @@
+﻿@model IEnumerable<LibraryMangementSystem.Models.Checkout>
+
+@{
+
+    ViewData["Title"] = "GetAll";
+
+    ViewData["Title"] = "Checkout";
+
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Get All Checkouts</h1>
+
+    <div class="mb-3 text-center">
+        <a asp-action="Create" class="btn btn-success me-2" style="background-color: #0d6efd; color: #000;">Create New</a>
+        <a asp-action="Penalty" class="btn btn-warning" style="background-color: red; color: #000;">Show Penalty</a>
+    </div>
+
+    <table class="table table-hover table-responsive">
+        <thead class="table-dark text-light">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CheckoutId)</th>
+                <th>@Html.DisplayNameFor(model => model.CheckoutDate)</th>
+                <th>@Html.DisplayNameFor(model => model.DueDate)</th>
+                <th>Name</th>
+                <th>@Html.DisplayNameFor(model => model.Book.Title)</th>
+                <th>Return</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.CheckoutId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CheckoutDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DueDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Member.FirstName)
+                        @Html.Raw(" ")
+                        @Html.DisplayFor(modelItem => item.Member.LastName)
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.Book.Title)</td>
+                    <td>
+                        <a href="/Checkout/Return?checkoutId=@item.CheckoutId" class="btn btn-primary btn-sm">Return</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

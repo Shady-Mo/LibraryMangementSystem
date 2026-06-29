@@ -1,0 +1,37 @@
+﻿@model LibraryMangementSystem.Models.Book
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-center my-4 display-4 text-primary">@Model.Title Details</h1>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-4 shadow-sm">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img class="img-fluid" src="/Images/Books/@Model.Image" alt="@Model.Title cover image" style="width:400px; height: 400px; object-fit: cover;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body text-center pt-5">
+                            <h5 class="card-title display-6">Book Title: <span class="text-primary">@Model.Title</span></h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Author: @Model.Author</h6>
+                            <p class="card-text"><strong>Genre:</strong> @Model.Genre</p>
+                            <p class="card-text"><strong>ISBN:</strong> @Model.ISBN</p>
+                            <p class="card-text"><strong>Published Year:</strong> @Model.PublishedYear</p>
+                            <p class="card-text"><strong>Available Copies:</strong> @Model.AvailableCopies</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="javascript:history.back()" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
+</div>
+
+

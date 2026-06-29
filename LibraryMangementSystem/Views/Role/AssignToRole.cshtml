@@ -1,0 +1,23 @@
+﻿@using LibraryMangementSystem.ViewModels
+@model AssignViewModel
+@{
+    ViewData["Title"] = "AssignToRole";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Assign To Role</h1>
+
+    <form asp-action="SaveAssign" method="post" class="border p-4 rounded bg-light shadow-sm">
+        <input type="hidden" asp-for="UserName" />
+
+        <div class="form-group mb-3">
+            <label for="AssignedRoles" class="form-label">Roles</label>
+            <select asp-for="AssignedRoles" class="form-control" multiple="multiple" asp-items="@(new SelectList(Model.Roles, "RoleName", "RoleName"))">
+            </select>
+        </div>
+
+        <div class="text-center">
+            <input type="submit" value="Save" class="btn btn-success btn-lg" />
+        </div>
+    </form>
+</div>

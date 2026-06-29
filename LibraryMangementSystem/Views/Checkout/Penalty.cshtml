@@ -1,0 +1,64 @@
+﻿@model IEnumerable<LibraryMangementSystem.Models.Penalty>
+
+@{
+
+    ViewData["Title"] = "GetAll";
+
+    ViewData["Title"] = "Penalty";
+
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Penalty Records</h1>
+
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="btn btn-light" style="background-color: #007bff; color: white;">Back to List</a>
+    </div>
+    <br />
+
+    <table class="table table-hover table-bordered">
+        <thead class="table-dark text-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PenaltyId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LateDaysThreshold)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PenaltyAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CheckoutId)
+                </th>
+                <th>
+                  Member Name
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PenaltyId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LateDaysThreshold)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PenaltyAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CheckoutId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Checkout.Member.FirstName)
+                        @Html.Raw(" ")
+                        @Html.DisplayFor(modelItem => item.Checkout.Member.LastName)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
