@@ -1,69 +1,75 @@
 ﻿@model LibraryMangementSystem.Models.Book
 
 @{
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Add New Book";
 }
 
 <div class="container mt-5">
-    <h1 class="text-center">Add New Book</h1>
-    <hr />
-
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form asp-action="SaveAdd" class="bg-light p-4 rounded shadow">
-                <div asp-validation-summary="All" class="text-danger mb-3"></div>
+        <div class="col-md-8 col-lg-6">
+            <div class="text-center mb-4">
+                <h1 class="display-5 fw-bold">Add New Book</h1>
+                <p class="text-muted">Fill out the details below to add a book to the catalog.</p>
+            </div>
 
-                <div class="form-group">
-                    <label asp-for="Title" class="control-label"></label>
+            <form asp-action="SaveAdd" method="post" enctype="multipart/form-data" class="bg-light p-4 rounded shadow-sm border">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label fw-semibold"></label>
                     <input asp-for="Title" class="form-control" placeholder="Enter book title" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
+                    <span asp-validation-for="Title" class="text-danger small"></span>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="Author" class="control-label"></label>
+                <div class="mb-3">
+                    <label asp-for="Author" class="form-label fw-semibold"></label>
                     <input asp-for="Author" class="form-control" placeholder="Enter author's name" />
-                    <span asp-validation-for="Author" class="text-danger"></span>
+                    <span asp-validation-for="Author" class="text-danger small"></span>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="Image" class="control-label">Select Image</label>
-                    <input asp-for="Image" class="form-control" type="file" />
+                <div class="mb-3">
+                    <label asp-for="Image" class="form-label fw-semibold">Cover Image</label>
+                    <input asp-for="Image" class="form-control" type="file" accept="image/*" />
+                    <span asp-validation-for="Image" class="text-danger small"></span>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="Genre" class="control-label"></label>
+                <div class="mb-3">
+                    <label asp-for="Genre" class="form-label fw-semibold"></label>
                     <input asp-for="Genre" class="form-control" placeholder="Enter book genre" />
-                    <span asp-validation-for="Genre" class="text-danger"></span>
+                    <span asp-validation-for="Genre" class="text-danger small"></span>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="ISBN" class="control-label"></label>
-                    <input asp-for="ISBN" class="form-control" placeholder="Enter ISBN number" />
-                    <span asp-validation-for="ISBN" class="text-danger"></span>
+                <div class="mb-3">
+                    <label asp-for="ISBN" class="form-label fw-semibold"></label>
+                    <input asp-for="ISBN" class="form-control" placeholder="Enter 13-digit ISBN" />
+                    <span asp-validation-for="ISBN" class="text-danger small"></span>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="PublishedYear" class="control-label"></label>
-                    <input asp-for="PublishedYear" class="form-control" placeholder="Enter published year" />
-                    <span asp-validation-for="PublishedYear" class="text-danger"></span>
+                <div class="row">
+                    <div class="col-sm-6 mb-3">
+                        <label asp-for="PublishedYear" class="form-label fw-semibold">Published Year</label>
+                        <input asp-for="PublishedYear" class="form-control" type="number" placeholder="YYYY" />
+                        <span asp-validation-for="PublishedYear" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-sm-6 mb-3">
+                        <label asp-for="AvailableCopies" class="form-label fw-semibold">Available Copies</label>
+                        <input asp-for="AvailableCopies" class="form-control" type="number" min="0" placeholder="0" />
+                        <span asp-validation-for="AvailableCopies" class="text-danger small"></span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="AvailableCopies" class="control-label"></label>
-                    <input asp-for="AvailableCopies" class="form-control" placeholder="Enter available copies" />
-                    <span asp-validation-for="AvailableCopies" class="text-danger"></span>
-                </div>
-                <br />
-                <div class="form-group text-center">
-                    <input type="submit" value="Add Book" class="btn btn-primary btn-lg" />
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-between align-items-center mt-4">
+                    <a asp-action="Index" class="btn btn-outline-secondary order-2 order-sm-1">Cancel</a>
+                    <button type="submit" class="btn btn-primary order-1 order-sm-2 px-4">Add Book</button>
                 </div>
             </form>
         </div>
     </div>
-
-   
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
